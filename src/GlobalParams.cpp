@@ -11,6 +11,7 @@
 #include "GlobalParams.h"
 
 string GlobalParams::verbose_mode;
+string GlobalParams::log_filename;
 int GlobalParams::trace_mode;
 string GlobalParams::trace_filename;
 int GlobalParams::mesh_dim_x;

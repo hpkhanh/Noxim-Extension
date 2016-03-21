@@ -125,6 +125,7 @@ typedef struct {
 
 struct GlobalParams {
     static string verbose_mode;
+    static string log_filename;
     static int trace_mode;
     static string trace_filename;
     static int mesh_dim_x;

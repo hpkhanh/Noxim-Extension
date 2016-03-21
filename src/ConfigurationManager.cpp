@@ -38,6 +38,7 @@ void loadConfiguration() {
 
     // Initialize global configuration parameters (can be overridden with command-line arguments)
     GlobalParams::verbose_mode = config["verbose_mode"].as<string>();
+    GlobalParams::log_filename = config["log_filename"].as<string>();
     GlobalParams::trace_mode = config["trace_mode"].as<bool>();
     GlobalParams::trace_filename = config["trace_filename"].as<string>();
     GlobalParams::mesh_dim_x = config["mesh_dim_x"].as<int>();
@@ -343,6 +344,8 @@ void parseCmdLine(int arg_num, char *arg_vet[])
 		GlobalParams::trace_mode = true;
 		GlobalParams::trace_filename = arg_vet[++i];
 	    } 
+	    else if (!strcmp(arg_vet[i], "-log"))
+		GlobalParams::log_filename = arg_vet[++i];
 	    else if (!strcmp(arg_vet[i], "-dimx"))
 		GlobalParams::mesh_dim_x = atoi(arg_vet[++i]);
 	    else if (!strcmp(arg_vet[i], "-dimy"))
