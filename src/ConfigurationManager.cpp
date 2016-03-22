@@ -38,6 +38,7 @@ void loadConfiguration() {
 
     // Initialize global configuration parameters (can be overridden with command-line arguments)
     GlobalParams::verbose_mode = config["verbose_mode"].as<string>();
+    GlobalParams::log_mode = config["log_mode"].as<bool>();
     GlobalParams::log_filename = config["log_filename"].as<string>();
     GlobalParams::trace_mode = config["trace_mode"].as<bool>();
     GlobalParams::trace_filename = config["trace_filename"].as<string>();
@@ -56,6 +57,7 @@ void loadConfiguration() {
     GlobalParams::probability_of_retransmission = config["probability_of_retransmission"].as<double>();
     GlobalParams::traffic_distribution = config["traffic_distribution"].as<string>();
     GlobalParams::traffic_table_filename = config["traffic_table_filename"].as<string>();
+    GlobalParams::traffic_trace_filename = config["traffic_trace_filename"].as<string>();
     GlobalParams::clock_period_ps = config["clock_period_ps"].as<int>();
     GlobalParams::simulation_time = config["simulation_time"].as<int>();
     GlobalParams::reset_time = config["reset_time"].as<int>();
@@ -345,7 +347,10 @@ void parseCmdLine(int arg_num, char *arg_vet[])
 		GlobalParams::trace_filename = arg_vet[++i];
 	    } 
 	    else if (!strcmp(arg_vet[i], "-log"))
-		GlobalParams::log_filename = arg_vet[++i];
+	    {
+	    	GlobalParams::log_mode = true;
+	    	GlobalParams::log_filename = arg_vet[++i];
+	    }
 	    else if (!strcmp(arg_vet[i], "-dimx"))
 		GlobalParams::mesh_dim_x = atoi(arg_vet[++i]);
 	    else if (!strcmp(arg_vet[i], "-dimy"))
@@ -434,7 +439,11 @@ void parseCmdLine(int arg_num, char *arg_vet[])
 		    GlobalParams::traffic_distribution =
 			TRAFFIC_TABLE_BASED;
 		    GlobalParams::traffic_table_filename = arg_vet[++i];
-		} else if (!strcmp(traffic, "local")) {
+		} else if (!strcmp(traffic, "trace")) {
+            GlobalParams::traffic_distribution =
+            TRAFFIC_TRACE_BASED;
+            GlobalParams::traffic_table_filename = arg_vet[++i];
+        } else if (!strcmp(traffic, "local")) {
 		    GlobalParams::traffic_distribution = TRAFFIC_LOCAL;
 		    GlobalParams::locality=atof(arg_vet[++i]);
 		}

@@ -13,6 +13,7 @@
 #include "GlobalStats.h"
 #include "DataStructs.h"
 #include "GlobalParams.h"
+#include "Utils.h"
 
 #include <csignal>
 

@@ -115,6 +115,9 @@ void NoC::buildMesh()
     // Check for traffic table availability
     if (GlobalParams::traffic_distribution == TRAFFIC_TABLE_BASED)
 	assert(gttable.load(GlobalParams::traffic_table_filename.c_str()));
+    // Check for traffic trace availability
+    else if (GlobalParams::traffic_distribution == TRAFFIC_TRACE_BASED)
+    assert(gtrtable.load(GlobalParams::traffic_trace_filename.c_str()));
 
     // Var to track Hub connected ports
     int * hub_connected_ports = (int *) calloc(GlobalParams::hub_configuration.size(), sizeof(int));

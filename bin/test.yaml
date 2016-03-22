@@ -121,10 +121,10 @@ simulation_time: 10000
 # collect stats after a given number of cycles
 stats_warm_up_time: 1000
 # power breakdown, nodes communication details
-detailed: true
+detailed: false
 # stop after a given amount of load has been processed
 max_volume_to_be_drained: 0
-show_buffer_stats: true
+show_buffer_stats: false
 
 # Winoc
 # enable wireless, when false, all wireless channel configuration is
@@ -142,7 +142,11 @@ verbose_mode: VERBOSE_OFF
 
 # Trace
 trace_mode: false
-trace_filename: ""
+trace_filename: "trace1"
+
+# Log
+log_mode: true
+log_filename: "log1.txt"
 
 min_packet_size: 8
 max_packet_size: 8

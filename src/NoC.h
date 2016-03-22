@@ -68,6 +68,7 @@ SC_MODULE(NoC)
     // Global tables
     GlobalRoutingTable grtable;
     GlobalTrafficTable gttable;
+    GlobalTrafficTrace gtrtable;
 
 
     // Constructor

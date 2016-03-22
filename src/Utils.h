@@ -73,17 +73,18 @@ inline ostream & operator <<(ostream & os, const Flit & flit)
 	os << "(";
 	switch (flit.flit_type) {
 	case FLIT_TYPE_HEAD:
-	    os << "H";
+	    os << "H, ";
 	    break;
 	case FLIT_TYPE_BODY:
-	    os << "B";
+	    os << "B, ";
 	    break;
 	case FLIT_TYPE_TAIL:
-	    os << "T";
+	    os << "T, ";
 	    break;
 	}
 
-	os <<  flit.sequence_no << ", " << flit.src_id << "->" << flit.dst_id << ")";
+	os <<  flit.timestamp << ", " << sc_time_stamp().to_double() / GlobalParams::clock_period_ps << ", "
+	        << flit.sequence_no << ", " << flit.src_id << "->" << flit.dst_id << ")";
     }
 
     return os;

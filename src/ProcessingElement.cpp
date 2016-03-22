@@ -9,6 +9,9 @@
  */
 
 #include "ProcessingElement.h"
+#include "GlobalParams.h"
+
+static ofstream out;
 
 int ProcessingElement::randInt(int min, int max)
 {
@@ -18,12 +21,22 @@ int ProcessingElement::randInt(int min, int max)
 
 void ProcessingElement::rxProcess()
 {
+//    static int no_calls = 0;
+//    if (no_calls == 0)
+//        no_calls++;
     if (reset.read()) {
 	ack_rx.write(0);
 	current_level_rx = 0;
     } else {
 	if (req_rx.read() == 1 - current_level_rx) {
 	    Flit flit_tmp = flit_rx.read();
+	    if (GlobalParams::log_mode)
+	    {
+
+	        if (out.is_open() == false)
+	            out.open(GlobalParams::log_filename.c_str(), ios::trunc);
+	        out << flit_tmp << endl;
+	    }
 	    current_level_rx = 1 - current_level_rx;	// Negate the old value for Alternating Bit Protocol (ABP)
 	}
 	ack_rx.write(current_level_rx);
@@ -95,7 +108,7 @@ bool ProcessingElement::canShot(Packet & packet)
 
     double now = sc_time_stamp().to_double() / GlobalParams::clock_period_ps;
 
-    if (GlobalParams::traffic_distribution != TRAFFIC_TABLE_BASED) {
+    if (GlobalParams::traffic_distribution != TRAFFIC_TABLE_BASED && GlobalParams::traffic_distribution != TRAFFIC_TRACE_BASED) {
 	if (!transmittedAtPreviousCycle)
 	    threshold = GlobalParams::packet_injection_rate;
 	else
@@ -122,7 +135,7 @@ bool ProcessingElement::canShot(Packet & packet)
         else
 		    assert(false);
 	}
-    } else {			// Table based communication traffic
+    } else if (GlobalParams::traffic_distribution == TRAFFIC_TABLE_BASED) {			// Table based communication traffic
 	if (never_transmit)
 	    return false;
 
@@ -143,6 +156,10 @@ bool ProcessingElement::canShot(Packet & packet)
 		}
 	    }
 	}
+    }
+    else if (GlobalParams::traffic_distribution != TRAFFIC_TRACE_BASED)
+    {
+
     }
 
     return shot;

@@ -11,6 +11,7 @@
 #include "GlobalParams.h"
 
 string GlobalParams::verbose_mode;
+bool GlobalParams::log_mode;
 string GlobalParams::log_filename;
 int GlobalParams::trace_mode;
 string GlobalParams::trace_filename;
@@ -30,6 +31,7 @@ double GlobalParams::probability_of_retransmission;
 double GlobalParams::locality;
 string GlobalParams::traffic_distribution;
 string GlobalParams::traffic_table_filename;
+string GlobalParams::traffic_trace_filename;
 string GlobalParams::config_filename;
 string GlobalParams::power_config_filename;
 int GlobalParams::clock_period_ps;

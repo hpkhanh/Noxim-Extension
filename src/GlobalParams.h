@@ -54,6 +54,7 @@ using namespace std;
 #define TRAFFIC_TRANSPOSE2     "TRAFFIC_TRANSPOSE2"
 #define TRAFFIC_HOTSPOT        "TRAFFIC_HOTSPOT"
 #define TRAFFIC_TABLE_BASED    "TRAFFIC_TABLE_BASED"
+#define TRAFFIC_TRACE_BASED    "TRAFFIC_TRACE_BASED"
 #define TRAFFIC_BIT_REVERSAL   "TRAFFIC_BIT_REVERSAL"
 #define TRAFFIC_SHUFFLE        "TRAFFIC_SHUFFLE"
 #define TRAFFIC_BUTTERFLY      "TRAFFIC_BUTTERFLY"
@@ -125,6 +126,7 @@ typedef struct {
 
 struct GlobalParams {
     static string verbose_mode;
+    static bool log_mode;
     static string log_filename;
     static int trace_mode;
     static string trace_filename;
@@ -144,6 +146,7 @@ struct GlobalParams {
     static double locality;
     static string traffic_distribution;
     static string traffic_table_filename;
+    static string traffic_trace_filename;
     static string config_filename;
     static string power_config_filename;
     static int clock_period_ps;
