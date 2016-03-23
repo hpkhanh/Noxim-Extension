@@ -26,74 +26,43 @@ bool GlobalTrafficTrace::load(const char *fname)
 
   // Cycle reading file
   while (!fin.eof()) {
-    char line[512];
-    fin.getline(line, sizeof(line) - 1);
+      char line[512];
+      fin.getline(line, sizeof(line) - 1);
 
-    if (line[0] != '\0') {
-      if (line[0] != '%') {
-	int src, dst;	// Mandatory
-	double pir, por;
-	int t_on, t_off, t_period;
+      if (line[0] != '\0') {
+          if (line[0] != '%') {
+              int time, src, no_dst, dst;	// Mandatory
 
-	int params =
-	  sscanf(line, "%d %d %lf %lf %d %d %d", &src, &dst, &pir,
-		 &por, &t_on, &t_off, &t_period);
-	if (params >= 2) {
-	  // Create a communication from the parameters read on the line
-	  Communication communication;
+              int params = sscanf(line, "%d %d %d ", &time, &src, &no_dst);
+              if (params == 3) {
+                  // Create a communication from the parameters read on the line
+                  TraceCommunication communication;
 
-	  // Mandatory fields
-	  communication.src = src;
-	  communication.dst = dst;
+                  // Mandatory fields
+                  communication.time = time;
+                  communication.src = src;
+                  communication.no_dst = no_dst;
+                  stringstream ss(line);
 
-	  // Custom PIR
-	  if (params >= 3 && pir >= 0 && pir <= 1)
-	    communication.pir = pir;
-	  else
-	    communication.pir =
-	      GlobalParams::packet_injection_rate;
+                  for (int i = 0; i < no_dst+3; i++)
+                  {
+                      ss >> dst;
+                      printf("%d ", dst);
+                      if (i >= 3)
+                          communication.dsts.push_back(dst);
+                  }
 
-	  // Custom POR
-	  if (params >= 4 && por >= 0 && por <= 1)
-	    communication.por = por;
-	  else
-	    communication.por = communication.pir;	// GlobalParams::probability_of_retransmission;
-
-	  // Custom Ton
-	  if (params >= 5 && t_on >= 0)
-	    communication.t_on = t_on;
-	  else
-	    communication.t_on = 0;
-
-	  // Custom Toff
-	  if (params >= 6 && t_off >= 0) {
-	    assert(t_off > t_on);
-	    communication.t_off = t_off;
-	  } else
-	    communication.t_off =
-	      GlobalParams::reset_time +
-	      GlobalParams::simulation_time;
-
-	  // Custom Tperiod
-	  if (params >= 7 && t_period > 0) {
-	    assert(t_period > t_off);
-	    communication.t_period = t_period;
-	  } else
-	    communication.t_period =
-	      GlobalParams::reset_time +
-	      GlobalParams::simulation_time;
-
-	  // Add this communication to the vector of communications
-	  traffic_trace.push_back(communication);
-	}
+                  // Add this communication to the vector of communications
+                  traffic_trace.push_back(communication);
+              }
+          }
       }
-    }
   }
 
   return true;
 }
 
-double GlobalTrafficTrace::getCumulativePirPor(const int src_id,
+/*double GlobalTrafficTrace::getCumulativePirPor(const int src_id,
 						    const int ccycle,
 						    const bool pir_not_por,
 						    vector < pair < int, double > > &dst_prob)
@@ -115,7 +84,7 @@ double GlobalTrafficTrace::getCumulativePirPor(const int src_id,
   }
 
   return cpirnpor;
-}
+}*/
 
 int GlobalTrafficTrace::occurrencesAsSource(const int src_id)
 {

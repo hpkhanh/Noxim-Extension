@@ -176,7 +176,11 @@ void NoC::buildMesh()
 	    // Tell to the PE its coordinates
 	    t[i][j]->pe->local_id = j * GlobalParams::mesh_dim_x + i;
 	    t[i][j]->pe->traffic_table = &gttable;	// Needed to choose destination
-	    t[i][j]->pe->never_transmit = (gttable.occurrencesAsSource(t[i][j]->pe->local_id) == 0);
+	    t[i][j]->pe->traffic_trace = &gtrtable;
+	    if (GlobalParams::traffic_distribution == TRAFFIC_TABLE_BASED)
+	        t[i][j]->pe->never_transmit = (gttable.occurrencesAsSource(t[i][j]->pe->local_id) == 0);
+	    else
+	        t[i][j]->pe->never_transmit = (gtrtable.occurrencesAsSource(t[i][j]->pe->local_id) == 0);
 
 	    // Map clock and reset
 	    t[i][j]->clock(clock);

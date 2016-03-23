@@ -159,10 +159,11 @@ probability_of_retransmission: 0.01
 #   TRAFFIC_TRANSPOSE2
 #   TRAFFIC_HOTSPOT
 #   TRAFFIC_TABLE_BASED
+#   TRAFFIC_TRACE_BASED
 #   TRAFFIC_BIT_REVERSAL
 #   TRAFFIC_SHUFFLE
 #   TRAFFIC_BUTTERFLY
-traffic_distribution: TRAFFIC_RANDOM
+traffic_distribution: TRAFFIC_TRACE_BASED
 # when traffic table based is specified, use the following
 # configuration file
-traffic_table_filename: "t.txt"
+traffic_trace_filename: "tr.txt"
