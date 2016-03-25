@@ -442,7 +442,7 @@ void parseCmdLine(int arg_num, char *arg_vet[])
 		} else if (!strcmp(traffic, "trace")) {
             GlobalParams::traffic_distribution =
             TRAFFIC_TRACE_BASED;
-            GlobalParams::traffic_table_filename = arg_vet[++i];
+            GlobalParams::traffic_trace_filename = arg_vet[++i];
         } else if (!strcmp(traffic, "local")) {
 		    GlobalParams::traffic_distribution = TRAFFIC_LOCAL;
 		    GlobalParams::locality=atof(arg_vet[++i]);
