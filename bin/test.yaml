@@ -146,7 +146,7 @@ trace_filename: "trace1"
 
 # Log
 log_mode: true
-log_filename: "log1.txt"
+log_filename: "log2.txt"
 
 min_packet_size: 8
 max_packet_size: 8
@@ -166,4 +166,5 @@ probability_of_retransmission: 0.01
 traffic_distribution: TRAFFIC_TRACE_BASED
 # when traffic table based is specified, use the following
 # configuration file
+traffic_table_filename: "t.txt"
 traffic_trace_filename: "tr.txt"

@@ -157,9 +157,11 @@ bool ProcessingElement::canShot(Packet & packet)
 	    }
 	}
     }
-    else if (GlobalParams::traffic_distribution != TRAFFIC_TRACE_BASED)
+    else if (GlobalParams::traffic_distribution == TRAFFIC_TRACE_BASED)
     {
-
+        int dest;
+        shot = traffic_trace->canShoot(local_id, (int)now, &dest);
+        packet.make(local_id, dest, now, 1);
     }
 
     return shot;

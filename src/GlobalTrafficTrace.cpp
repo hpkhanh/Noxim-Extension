@@ -9,6 +9,7 @@
  */
 
 #include "GlobalTrafficTrace.h"
+#include <math.h>
 
 GlobalTrafficTrace::GlobalTrafficTrace()
 {
@@ -47,7 +48,7 @@ bool GlobalTrafficTrace::load(const char *fname)
                   for (int i = 0; i < no_dst+3; i++)
                   {
                       ss >> dst;
-                      printf("%d ", dst);
+//                      printf("%d ", dst);
                       if (i >= 3)
                           communication.dsts.push_back(dst);
                   }
@@ -85,6 +86,28 @@ bool GlobalTrafficTrace::load(const char *fname)
 
   return cpirnpor;
 }*/
+
+bool GlobalTrafficTrace::canShoot(const int src_id, const int now, int * dest_id)
+{
+    bool shoot = false;
+    for (unsigned int i = 0; i < traffic_trace.size(); i++)
+    {
+        TraceCommunication comm = traffic_trace[i];
+        if (comm.src == src_id)
+        {
+            if ((now >=  comm.time) && (now < comm.time + comm.no_dst))
+            {
+                shoot = true;
+                *dest_id = comm.dsts[now - comm.time];
+                if (now == comm.time + comm.no_dst - 1)
+                    traffic_trace.erase(traffic_trace.begin()+i);
+            }
+
+            break;
+        }
+    }
+    return shoot;
+}
 
 int GlobalTrafficTrace::occurrencesAsSource(const int src_id)
 {

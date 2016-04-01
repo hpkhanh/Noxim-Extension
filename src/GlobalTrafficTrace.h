@@ -35,10 +35,11 @@ class GlobalTrafficTrace {
     // Returns the cumulative pir por along with a vector of pairs. The
     // first component of the pair is the destination. The second
     // component is the cumulative shooting probability.
-    double getCumulativePirPor(const int src_id,
+/*    double getCumulativePirPor(const int src_id,
                    const int ccycle,
                    const bool pir_not_por,
-                   vector < pair < int, double > > &dst_prob);
+                   vector < pair < int, double > > &dst_prob);*/
+    bool canShoot(const int src_id, const int now, int * dest_id);
 
     // Returns the number of occurrences of source src_id in the traffic
     // trace
