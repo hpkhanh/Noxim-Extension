@@ -8,7 +8,7 @@
 mesh_dim_x: 4
 mesh_dim_y: 4
 # number of flits for each router buffer
-buffer_depth: 4
+buffer_depth: 8
 # size of flits, in bits
 flit_size: 32
 # lenght in mm of router to hub connection
@@ -117,9 +117,9 @@ clock_period_ps: 1000
 # duration of reset signal assertion, expressed in cycles
 reset_time: 1000
 # overal simulation lenght, expressed in cycles
-simulation_time: 10000
+simulation_time: 2000
 # collect stats after a given number of cycles
-stats_warm_up_time: 1000
+stats_warm_up_time: 500
 # power breakdown, nodes communication details
 detailed: false
 # stop after a given amount of load has been processed

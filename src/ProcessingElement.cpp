@@ -35,7 +35,7 @@ void ProcessingElement::rxProcess()
 
 	        if (out.is_open() == false)
 	            out.open(GlobalParams::log_filename.c_str(), ios::trunc);
-	        out << flit_tmp << endl;
+	        out << "Reiv " << flit_tmp << endl;
 	    }
 	    current_level_rx = 1 - current_level_rx;	// Negate the old value for Alternating Bit Protocol (ABP)
 	}
@@ -63,6 +63,13 @@ void ProcessingElement::txProcess()
 	    if (!packet_queue.empty()) {
 		Flit flit = nextFlit();	// Generate a new flit
 		flit_tx->write(flit);	// Send the generated flit
+		if (GlobalParams::log_mode)
+		{
+
+		    if (out.is_open() == false)
+		        out.open(GlobalParams::log_filename.c_str(), ios::trunc);
+		    out << "Send " << flit << endl;
+		}
 		current_level_tx = 1 - current_level_tx;	// Negate the old value for Alternating Bit Protocol (ABP)
 		req_tx.write(current_level_tx);
 	    }

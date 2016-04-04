@@ -7,6 +7,7 @@
 #include "DataStructs.h"
 #include <iomanip>
 
+#define DEBUG 1
 #ifdef DEBUG
 
 #define LOG (std::cout << std::setw(7) << left << sc_time_stamp().to_double() / GlobalParams::clock_period_ps << " " << name() << "::" << __func__<< "() --> ")

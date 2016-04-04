@@ -9,6 +9,7 @@
  */
 
 #include "Router.h"
+#include <iostream>
 
 void Router::rxProcess()
 {
@@ -35,6 +36,8 @@ void Router::rxProcess()
 	    if ((req_rx[i].read() == 1 - current_level_rx[i])
 		&& !buffer[i].IsFull()) {
 		Flit received_flit = flit_rx[i].read();
+
+//		std::cout << "Router Reiv " << received_flit << endl;
 
 		// Store the incoming flit in the circular buffer
 		buffer[i].Push(received_flit);
@@ -98,12 +101,13 @@ void Router::txProcess()
 
 		  if (reservation_table.isAvailable(o)) 
 		  {
-		      LOG << " reserving direction " << o << " for flit " << flit << endl;
+		      LOG << " reserving from " << i << " to direction " << o << " for flit " << flit << endl;
+//              printf("From Router %d \n", local_id);
 		      reservation_table.reserve(i, o);
 		  }
 		  else
 		  {
-		      LOG << " cannot reserve direction " << o << " for flit " << flit << endl;
+		      LOG << " cannot reserve from " << i << " to direction " << o << " for flit " << flit << endl;
 		  }
 		}
 	    }
@@ -150,7 +154,7 @@ void Router::txProcess()
 		      if (flit.dst_id == local_id)
 			  power.networkInterface();
 
-		      if (flit.flit_type == FLIT_TYPE_TAIL)
+		      if ((flit.flit_type == FLIT_TYPE_TAIL) || (flit.sequence_length == 1))
 			  reservation_table.release(o);
 
 		      // Update stats

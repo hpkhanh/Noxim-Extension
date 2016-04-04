@@ -37,6 +37,14 @@ void ReservationTable::reserve(const int port_in, const int port_out)
     assert(isAvailable(port_out));
 
     rtable[port_out] = port_in;
+
+/*
+    for (map<int,int>::iterator i=rtable.begin(); i!=rtable.end(); i++)
+    {
+        printf("Reserve out %d in %d \n", i->first, i->second);
+    }
+*/
+
 }
 
 void ReservationTable::release(const int port_out)

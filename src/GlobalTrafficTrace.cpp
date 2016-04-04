@@ -101,6 +101,7 @@ bool GlobalTrafficTrace::canShoot(const int src_id, const int now, int * dest_id
                 *dest_id = comm.dsts[now - comm.time];
                 if (now == comm.time + comm.no_dst - 1)
                     traffic_trace.erase(traffic_trace.begin()+i);
+//                printf("Shoot %d \n", now);
             }
 
             break;
