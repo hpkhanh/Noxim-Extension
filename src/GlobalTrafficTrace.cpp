@@ -32,21 +32,23 @@ bool GlobalTrafficTrace::load(const char *fname)
 
       if (line[0] != '\0') {
           if (line[0] != '%') {
-              int time, src, no_dst, dst;	// Mandatory
+              int time, no_flit, src, no_dst;	// Mandatory
 
-              int params = sscanf(line, "%d %d %d ", &time, &src, &no_dst);
-              if (params == 3) {
+              int params = sscanf(line, "%d %d %d %d", &time, &no_flit, &src, &no_dst);
+              if (params == 4) {
                   // Create a communication from the parameters read on the line
                   TraceCommunication communication;
 
                   // Mandatory fields
                   communication.time = time;
+                  communication.no_flit = no_flit;
                   communication.src = src;
                   communication.no_dst = no_dst;
                   stringstream ss(line);
 
                   for (int i = 0; i < no_dst+3; i++)
                   {
+                      int dst;
                       ss >> dst;
 //                      printf("%d ", dst);
                       if (i >= 3)
