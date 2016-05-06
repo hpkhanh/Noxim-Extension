@@ -167,4 +167,4 @@ traffic_distribution: TRAFFIC_TRACE_BASED
 # when traffic table based is specified, use the following
 # configuration file
 traffic_table_filename: "t.txt"
-traffic_trace_filename: "tr.txt"
+traffic_trace_filename: "spikes"

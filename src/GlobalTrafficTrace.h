@@ -18,9 +18,11 @@ using namespace std;
 // Structure used to store information into the trace
 struct TraceCommunication {
   int time;
-  int no_flit;
+  int group_src;
+  int group_dst;
   int src;          // ID of the source node (PE)
   int no_dst;
+  int no_flit;
   vector <int> dsts;          // ID of the destination node (PE)
 };
 
