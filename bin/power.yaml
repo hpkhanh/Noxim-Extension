@@ -64,7 +64,8 @@ Energy:
             default:     [1.20e-4, 6.00e-14]
             XY:          [1.20e-4, 6.00e-14]
             DYAD:        [1.25e-4, 6.23e-14]
-            ODD_EVEN:        [1.25e-4, 6.23e-14]
+            ODD_EVEN:    [1.25e-4, 6.23e-14]
+            TABLE_BASED: [1.20e-4, 6.00e-14]
 
         selection:
         #   Strategy:    [Static, Dynamic]

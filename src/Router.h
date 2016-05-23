@@ -64,6 +64,7 @@ SC_MODULE(Router)
     int routing_type;		                // Type of routing algorithm
     int selection_type;
     Buffer buffer[DIRECTIONS + 2];	        // Buffer for each input channel 
+    vector<Flit> buf[DIRECTIONS + 2];
     bool current_level_rx[DIRECTIONS + 2];	// Current level for Alternating Bit Protocol (ABP)
     bool current_level_tx[DIRECTIONS + 2];	// Current level for Alternating Bit Protocol (ABP)
     Stats stats;		                // Statistics
@@ -90,18 +91,20 @@ SC_MODULE(Router)
     // Constructor
 
     SC_CTOR(Router) {
-	SC_METHOD(rxProcess);
+
+    SC_METHOD(rxProcess);
 	sensitive << reset;
 	sensitive << clock.pos();
 
-	SC_METHOD(txProcess);
-	sensitive << reset;
-	sensitive << clock.pos();
+    SC_METHOD(txProcess);
+    sensitive << reset;
+    sensitive << clock.pos();
 
 	SC_METHOD(perCycleUpdate);
 	sensitive << reset;
 	sensitive << clock.pos();
 	
+	count = 0;
 	routingAlgorithm = RoutingAlgorithms::get(GlobalParams::routing_algorithm);
 
 	if (routingAlgorithm == 0)
@@ -120,6 +123,8 @@ SC_MODULE(Router)
     }
 
   private:
+
+    unsigned int count;
 
     // performs actual routing + selection
     int route(const RouteData & route_data);

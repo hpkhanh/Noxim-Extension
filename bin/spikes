@@ -3,10 +3,19 @@
 %PostSynNeuron1 PostSynNeuron2 PostSynNeuron3...
 %timeMs2 GroupPreSynID GroupPostSynID PreSynNeuron NumPostSynNeurons
 %PostSynNeuron1 PostSynNeuron2 PostSynNeuron3...
-8 0 1 5 7
-2 3 4 5 6 7 8 
-8 0 1 8 4
-5 6 7 8 
-9 0 1 8 4
-5 6 7 8 
+8 0 1 1 1
+6
+8 0 1 4 1
+9
+9 0 1 1 1
+6
+9 0 1 4 1
+9
+10 0 1 1 1
+6
+10 0 1 4 1
+9
+
+%9 0 1 8 4
+%5 6 7 8 
 

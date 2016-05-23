@@ -1,0 +1,123 @@
+
+		Noxim - the NoC Simulator
+		(C) University of Catania
+
+Loading configuration from file "test_route.yaml"... Done
+Loading power configurations from file "power.yaml"... Done
+route out: 1 -> 5 
+route out: 4 -> 5 
+route out: 5 -> 6 
+route out: 5 -> 9 
+
+
+
+
+
+
+Reset for 1000 cycles... 
+
+Info: (I702) default timescale unit used for tracing: 1 ps (trace1.vcd)
+ done! Now running for 2000 cycles...
+1509    NoC.Tile[01][00]_(#1).Router::rxProcess() -->  received from direction 4 flit (H, 1508, 1509, 0, 1->6)
+1509    NoC.Tile[00][01]_(#4).Router::rxProcess() -->  received from direction 4 flit (H, 1508, 1509, 0, 4->9)
+1510    NoC.Tile[01][00]_(#1).Router::routingFunction() --> Wired routing for dst = 6
+1510    NoC.Tile[01][00]_(#1).Router::txProcess() -->  checking reservation availability of direction 2 for flit (H, 1508, 1510, 0, 1->6)
+1510    NoC.Tile[01][00]_(#1).Router::txProcess() -->  reserving from 4 to direction 2 for flit (H, 1508, 1510, 0, 1->6)
+1510    NoC.Tile[01][00]_(#1).Router::txProcess() --> Input[4] forward to Output[2], flit: (H, 1508, 1510, 0, 1->6)
+1510    NoC.Tile[00][01]_(#4).Router::routingFunction() --> Wired routing for dst = 9
+1510    NoC.Tile[00][01]_(#4).Router::txProcess() -->  checking reservation availability of direction 1 for flit (H, 1508, 1510, 0, 4->9)
+1510    NoC.Tile[00][01]_(#4).Router::txProcess() -->  reserving from 4 to direction 1 for flit (H, 1508, 1510, 0, 4->9)
+1510    NoC.Tile[00][01]_(#4).Router::txProcess() --> Input[4] forward to Output[1], flit: (H, 1508, 1510, 0, 4->9)
+1511    NoC.Tile[01][00]_(#1).Router::rxProcess() -->  received from direction 4 flit (H, 1509, 1511, 0, 1->6)
+1511    NoC.Tile[00][01]_(#4).Router::rxProcess() -->  received from direction 4 flit (H, 1509, 1511, 0, 4->9)
+1511    NoC.Tile[01][01]_(#5).Router::rxProcess() -->  received from direction 0 flit (H, 1508, 1511, 0, 1->6)
+1511    NoC.Tile[01][01]_(#5).Router::rxProcess() -->  received from direction 3 flit (H, 1508, 1511, 0, 4->9)
+1512    NoC.Tile[01][00]_(#1).Router::routingFunction() --> Wired routing for dst = 6
+1512    NoC.Tile[01][00]_(#1).Router::txProcess() -->  checking reservation availability of direction 2 for flit (H, 1509, 1512, 0, 1->6)
+1512    NoC.Tile[01][00]_(#1).Router::txProcess() -->  reserving from 4 to direction 2 for flit (H, 1509, 1512, 0, 1->6)
+1512    NoC.Tile[01][00]_(#1).Router::txProcess() --> Input[4] forward to Output[2], flit: (H, 1509, 1512, 0, 1->6)
+1512    NoC.Tile[00][01]_(#4).Router::routingFunction() --> Wired routing for dst = 9
+1512    NoC.Tile[00][01]_(#4).Router::txProcess() -->  checking reservation availability of direction 1 for flit (H, 1509, 1512, 0, 4->9)
+1512    NoC.Tile[00][01]_(#4).Router::txProcess() -->  reserving from 4 to direction 1 for flit (H, 1509, 1512, 0, 4->9)
+1512    NoC.Tile[00][01]_(#4).Router::txProcess() --> Input[4] forward to Output[1], flit: (H, 1509, 1512, 0, 4->9)
+1512    NoC.Tile[01][01]_(#5).Router::routingFunction() --> Wired routing for dst = 6
+1512    NoC.Tile[01][01]_(#5).Router::txProcess() -->  checking reservation availability of direction 1 for flit (H, 1508, 1512, 0, 1->6)
+1512    NoC.Tile[01][01]_(#5).Router::txProcess() -->  reserving from 0 to direction 1 for flit (H, 1508, 1512, 0, 1->6)
+1512    NoC.Tile[01][01]_(#5).Router::routingFunction() --> Wired routing for dst = 9
+1512    NoC.Tile[01][01]_(#5).Router::txProcess() -->  checking reservation availability of direction 2 for flit (H, 1508, 1512, 0, 4->9)
+1512    NoC.Tile[01][01]_(#5).Router::txProcess() -->  reserving from 3 to direction 2 for flit (H, 1508, 1512, 0, 4->9)
+1512    NoC.Tile[01][01]_(#5).Router::txProcess() --> Input[0] forward to Output[1], flit: (H, 1508, 1512, 0, 1->6)
+1512    NoC.Tile[01][01]_(#5).Router::txProcess() --> Input[3] forward to Output[2], flit: (H, 1508, 1512, 0, 4->9)
+1513    NoC.Tile[01][00]_(#1).Router::rxProcess() -->  received from direction 4 flit (H, 1510, 1513, 0, 1->6)
+1513    NoC.Tile[00][01]_(#4).Router::rxProcess() -->  received from direction 4 flit (H, 1510, 1513, 0, 4->9)
+1513    NoC.Tile[01][01]_(#5).Router::rxProcess() -->  received from direction 0 flit (H, 1509, 1513, 0, 1->6)
+1513    NoC.Tile[01][01]_(#5).Router::rxProcess() -->  received from direction 3 flit (H, 1509, 1513, 0, 4->9)
+1513    NoC.Tile[02][01]_(#6).Router::rxProcess() -->  received from direction 3 flit (H, 1508, 1513, 0, 1->6)
+1513    NoC.Tile[01][02]_(#9).Router::rxProcess() -->  received from direction 0 flit (H, 1508, 1513, 0, 4->9)
+1514    NoC.Tile[01][00]_(#1).Router::routingFunction() --> Wired routing for dst = 6
+1514    NoC.Tile[01][00]_(#1).Router::txProcess() -->  checking reservation availability of direction 2 for flit (H, 1510, 1514, 0, 1->6)
+1514    NoC.Tile[01][00]_(#1).Router::txProcess() -->  reserving from 4 to direction 2 for flit (H, 1510, 1514, 0, 1->6)
+1514    NoC.Tile[01][00]_(#1).Router::txProcess() --> Input[4] forward to Output[2], flit: (H, 1510, 1514, 0, 1->6)
+1514    NoC.Tile[00][01]_(#4).Router::routingFunction() --> Wired routing for dst = 9
+1514    NoC.Tile[00][01]_(#4).Router::txProcess() -->  checking reservation availability of direction 1 for flit (H, 1510, 1514, 0, 4->9)
+1514    NoC.Tile[00][01]_(#4).Router::txProcess() -->  reserving from 4 to direction 1 for flit (H, 1510, 1514, 0, 4->9)
+1514    NoC.Tile[00][01]_(#4).Router::txProcess() --> Input[4] forward to Output[1], flit: (H, 1510, 1514, 0, 4->9)
+1514    NoC.Tile[01][01]_(#5).Router::routingFunction() --> Wired routing for dst = 9
+1514    NoC.Tile[01][01]_(#5).Router::txProcess() -->  checking reservation availability of direction 2 for flit (H, 1509, 1514, 0, 4->9)
+1514    NoC.Tile[01][01]_(#5).Router::txProcess() -->  reserving from 3 to direction 2 for flit (H, 1509, 1514, 0, 4->9)
+1514    NoC.Tile[01][01]_(#5).Router::routingFunction() --> Wired routing for dst = 6
+1514    NoC.Tile[01][01]_(#5).Router::txProcess() -->  checking reservation availability of direction 1 for flit (H, 1509, 1514, 0, 1->6)
+1514    NoC.Tile[01][01]_(#5).Router::txProcess() -->  reserving from 0 to direction 1 for flit (H, 1509, 1514, 0, 1->6)
+1514    NoC.Tile[01][01]_(#5).Router::txProcess() --> Input[0] forward to Output[1], flit: (H, 1509, 1514, 0, 1->6)
+1514    NoC.Tile[01][01]_(#5).Router::txProcess() --> Input[3] forward to Output[2], flit: (H, 1509, 1514, 0, 4->9)
+1514    NoC.Tile[02][01]_(#6).Router::txProcess() -->  checking reservation availability of direction 4 for flit (H, 1508, 1514, 0, 1->6)
+1514    NoC.Tile[02][01]_(#6).Router::txProcess() -->  reserving from 3 to direction 4 for flit (H, 1508, 1514, 0, 1->6)
+1514    NoC.Tile[02][01]_(#6).Router::txProcess() --> Input[3] forward to Output[4], flit: (H, 1508, 1514, 0, 1->6)
+1514    NoC.Tile[02][01]_(#6).Router::txProcess() --> Consumed flit (H, 1508, 1514, 0, 1->6)
+1514    NoC.Tile[01][02]_(#9).Router::txProcess() -->  checking reservation availability of direction 4 for flit (H, 1508, 1514, 0, 4->9)
+1514    NoC.Tile[01][02]_(#9).Router::txProcess() -->  reserving from 0 to direction 4 for flit (H, 1508, 1514, 0, 4->9)
+1514    NoC.Tile[01][02]_(#9).Router::txProcess() --> Input[0] forward to Output[4], flit: (H, 1508, 1514, 0, 4->9)
+1514    NoC.Tile[01][02]_(#9).Router::txProcess() --> Consumed flit (H, 1508, 1514, 0, 4->9)
+1515    NoC.Tile[01][01]_(#5).Router::rxProcess() -->  received from direction 0 flit (H, 1510, 1515, 0, 1->6)
+1515    NoC.Tile[01][01]_(#5).Router::rxProcess() -->  received from direction 3 flit (H, 1510, 1515, 0, 4->9)
+1515    NoC.Tile[02][01]_(#6).Router::rxProcess() -->  received from direction 3 flit (H, 1509, 1515, 0, 1->6)
+1515    NoC.Tile[01][02]_(#9).Router::rxProcess() -->  received from direction 0 flit (H, 1509, 1515, 0, 4->9)
+1516    NoC.Tile[01][01]_(#5).Router::routingFunction() --> Wired routing for dst = 6
+1516    NoC.Tile[01][01]_(#5).Router::txProcess() -->  checking reservation availability of direction 1 for flit (H, 1510, 1516, 0, 1->6)
+1516    NoC.Tile[01][01]_(#5).Router::txProcess() -->  reserving from 0 to direction 1 for flit (H, 1510, 1516, 0, 1->6)
+1516    NoC.Tile[01][01]_(#5).Router::routingFunction() --> Wired routing for dst = 9
+1516    NoC.Tile[01][01]_(#5).Router::txProcess() -->  checking reservation availability of direction 2 for flit (H, 1510, 1516, 0, 4->9)
+1516    NoC.Tile[01][01]_(#5).Router::txProcess() -->  reserving from 3 to direction 2 for flit (H, 1510, 1516, 0, 4->9)
+1516    NoC.Tile[01][01]_(#5).Router::txProcess() --> Input[0] forward to Output[1], flit: (H, 1510, 1516, 0, 1->6)
+1516    NoC.Tile[01][01]_(#5).Router::txProcess() --> Input[3] forward to Output[2], flit: (H, 1510, 1516, 0, 4->9)
+1516    NoC.Tile[02][01]_(#6).Router::txProcess() -->  checking reservation availability of direction 4 for flit (H, 1509, 1516, 0, 1->6)
+1516    NoC.Tile[02][01]_(#6).Router::txProcess() -->  reserving from 3 to direction 4 for flit (H, 1509, 1516, 0, 1->6)
+1516    NoC.Tile[02][01]_(#6).Router::txProcess() --> Input[3] forward to Output[4], flit: (H, 1509, 1516, 0, 1->6)
+1516    NoC.Tile[02][01]_(#6).Router::txProcess() --> Consumed flit (H, 1509, 1516, 0, 1->6)
+1516    NoC.Tile[01][02]_(#9).Router::txProcess() -->  checking reservation availability of direction 4 for flit (H, 1509, 1516, 0, 4->9)
+1516    NoC.Tile[01][02]_(#9).Router::txProcess() -->  reserving from 0 to direction 4 for flit (H, 1509, 1516, 0, 4->9)
+1516    NoC.Tile[01][02]_(#9).Router::txProcess() --> Input[0] forward to Output[4], flit: (H, 1509, 1516, 0, 4->9)
+1516    NoC.Tile[01][02]_(#9).Router::txProcess() --> Consumed flit (H, 1509, 1516, 0, 4->9)
+1517    NoC.Tile[02][01]_(#6).Router::rxProcess() -->  received from direction 3 flit (H, 1510, 1517, 0, 1->6)
+1517    NoC.Tile[01][02]_(#9).Router::rxProcess() -->  received from direction 0 flit (H, 1510, 1517, 0, 4->9)
+1518    NoC.Tile[02][01]_(#6).Router::txProcess() -->  checking reservation availability of direction 4 for flit (H, 1510, 1518, 0, 1->6)
+1518    NoC.Tile[02][01]_(#6).Router::txProcess() -->  reserving from 3 to direction 4 for flit (H, 1510, 1518, 0, 1->6)
+1518    NoC.Tile[02][01]_(#6).Router::txProcess() --> Input[3] forward to Output[4], flit: (H, 1510, 1518, 0, 1->6)
+1518    NoC.Tile[02][01]_(#6).Router::txProcess() --> Consumed flit (H, 1510, 1518, 0, 1->6)
+1518    NoC.Tile[01][02]_(#9).Router::txProcess() -->  checking reservation availability of direction 4 for flit (H, 1510, 1518, 0, 4->9)
+1518    NoC.Tile[01][02]_(#9).Router::txProcess() -->  reserving from 0 to direction 4 for flit (H, 1510, 1518, 0, 4->9)
+1518    NoC.Tile[01][02]_(#9).Router::txProcess() --> Input[0] forward to Output[4], flit: (H, 1510, 1518, 0, 4->9)
+1518    NoC.Tile[01][02]_(#9).Router::txProcess() --> Consumed flit (H, 1510, 1518, 0, 4->9)
+Noxim simulation completed.
+ ( 3000 cycles executed)
+% Total received packets: 6
+% Total received flits: 6
+% Received/Ideal flits Ratio: 0.003125
+% Average wireless utilization: 0
+% Global average delay (cycles): 7
+% Max delay (cycles): 8
+% Network throughput (flits/cycle): 0.004
+% Average IP throughput (flits/cycle/IP): 0.00025
+% Total energy (J): 3.99917e-07
+% 	Dynamic energy (J): 6.68148e-11
+% 	Static energy (J): 3.9985e-07

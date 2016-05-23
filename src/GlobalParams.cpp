@@ -19,6 +19,7 @@ int GlobalParams::mesh_dim_x;
 int GlobalParams::mesh_dim_y;
 double GlobalParams::r2r_link_length;
 double GlobalParams::r2h_link_length;
+int GlobalParams::router_cycle;
 int GlobalParams::buffer_depth;
 int GlobalParams::flit_size;
 int GlobalParams::min_packet_size;

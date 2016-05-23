@@ -64,8 +64,7 @@ int oLinkId2Direction(const LinkId & out_link)
     return 0;
 }
 
-vector <
-    int >admissibleOutputsSet2Vector(const AdmissibleOutputs & ao)
+vector < int > admissibleOutputsSet2Vector(const AdmissibleOutputs & ao)
 {
     vector < int >dirs;
 
@@ -86,13 +85,16 @@ bool GlobalRoutingTable::load(const char *fname)
     ifstream fin(fname, ios::in);
 
     if (!fin)
-	return false;
+    {
+        std::cout << !fin << endl;
+        return false;
+    }
 
     rt_noc.clear();
 
     bool stop = false;
     while (!fin.eof() && !stop) {
-	char line[128];
+	char line[1024];
 	fin.getline(line, sizeof(line) - 1);
 
 	if (line[0] == '\0')
@@ -102,12 +104,23 @@ bool GlobalRoutingTable::load(const char *fname)
 		int node_id, in_src, in_dst, dst_id, out_src, out_dst;
 
 		if (sscanf
-		    (line + 1, "%d %d->%d %d", &node_id, &in_src, &in_dst,
+		    (line, "%d %d->%d %d", &node_id, &in_src, &in_dst,
 		     &dst_id) == 4) {
 		    LinkId lin(in_src, in_dst);
 
+//		    printf("%d %d %d %d \n", node_id, in_src, in_dst, dst_id);
+
 		    char *pstr = line + COLUMN_AOC;
+//		    int n = 0;
+//		    while (pstr[n] != '\0')
+//		    {
+//		        printf("%c ", pstr[n]);
+//		        n++;
+//		    }
+//		    printf("\n");
+//		    std::cout << (sscanf(pstr, "%d->%d", &out_src, &out_dst) == 2) << endl;
 		    while (sscanf(pstr, "%d->%d", &out_src, &out_dst) == 2) {
+//		    printf("route out: %d -> %d \n", out_src, out_dst);
 			LinkId lout(out_src, out_dst);
 
 			rt_noc[node_id][lin][dst_id].insert(lout);

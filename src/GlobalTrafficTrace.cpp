@@ -59,7 +59,7 @@ bool GlobalTrafficTrace::load(const char *fname)
                   {
                       int dst;
                       ss >> dst;
-                      printf("%d ", dst);
+//                      printf("%d ", dst);
                       communication.dsts.push_back(dst);
                   }
 

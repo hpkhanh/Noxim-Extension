@@ -107,7 +107,7 @@ void NoC::buildMesh()
 
     }
 
-
+    //std::cout << GlobalParams::routing_table_filename << endl;
     // Check for routing table availability
     if (GlobalParams::routing_algorithm == ROUTING_TABLE_BASED)
 	assert(grtable.load(GlobalParams::routing_table_filename.c_str()));

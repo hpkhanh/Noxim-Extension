@@ -46,6 +46,7 @@ void loadConfiguration() {
     GlobalParams::mesh_dim_y = config["mesh_dim_y"].as<int>();
     GlobalParams::r2r_link_length = config["r2r_link_length"].as<double>();
     GlobalParams::r2h_link_length = config["r2h_link_length"].as<double>();
+    GlobalParams::router_cycle = config["router_cycle"].as<int>();
     GlobalParams::buffer_depth = config["buffer_depth"].as<int>();
     GlobalParams::flit_size = config["flit_size"].as<int>();
     GlobalParams::min_packet_size = config["min_packet_size"].as<int>();

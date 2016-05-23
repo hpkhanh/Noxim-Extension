@@ -28,8 +28,8 @@ r2r_link_length: 1.0
 #   TABLE_BASED
 # Each of the above labels should match a corresponding
 # implementation in the routingAlgorithms source code directory
-routing_algorithm: XY
-routing_table_filename: ""
+routing_algorithm: TABLE_BASED
+routing_table_filename: "rout.txt"
 
 # Routing specific parameters
 #   dyad_threshold: double
@@ -143,7 +143,7 @@ use_wirxsleep: false
 verbose_mode: VERBOSE_OFF
 
 # Trace
-trace_mode: false
+trace_mode: true
 trace_filename: "trace1"
 
 # Log

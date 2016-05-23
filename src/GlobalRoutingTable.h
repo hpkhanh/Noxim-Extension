@@ -41,12 +41,11 @@ typedef map < int, RoutingTableNode > RoutingTableNoC;
 // Converts an input direction to a link 
 LinkId direction2ILinkId(const int node_id, const int dir);
 
-// Converts an input direction to a link
+// Converts an output link to a direction
 int oLinkId2Direction(const LinkId & out_link);
 
 // Converts a set of output links to a set of directions
-vector <
-    int >admissibleOutputsSet2Vector(const AdmissibleOutputs & ao);
+vector < int > admissibleOutputsSet2Vector(const AdmissibleOutputs & ao);
 
 class GlobalRoutingTable {
 

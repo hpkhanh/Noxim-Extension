@@ -44,9 +44,9 @@ class ReservationTable {
 
   private:
 
-
-     map<int,int> rtable;	// reservation vector: rtable[i] gives the input
+    // reservation vector: rtable[i] gives the input
     // port whose output port 'i' is connected to
+    map<int,int> rtable;
 };
 
 #endif

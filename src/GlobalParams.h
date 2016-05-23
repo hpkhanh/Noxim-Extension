@@ -134,6 +134,7 @@ struct GlobalParams {
     static int mesh_dim_y;
     static double r2r_link_length;
     static double r2h_link_length;
+    static int router_cycle;
     static int buffer_depth;
     static int flit_size;
     static int min_packet_size;
