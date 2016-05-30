@@ -157,13 +157,15 @@ void NoC::buildMesh()
     // Create the mesh as a matrix of tiles
     for (int j = 0; j < GlobalParams::mesh_dim_y; j++) {
 	for (int i = 0; i < GlobalParams::mesh_dim_x; i++) {
-	    // Create the single Tile with a proper name
-	    char tile_name[20];
+	    // Create the single Tile with a proper name,
+	    // this has the potential to limit the size of the network
+	    // but with current state of simulation, it's still working
+	    char tile_name[30];
 	    Coord tile_coord;
 	    tile_coord.x = i;
 	    tile_coord.y = j;
 	    int tile_id = coord2Id(tile_coord);
-	    sprintf(tile_name, "Tile[%02d][%02d]_(#%d)", i, j, tile_id);
+	    sprintf(tile_name, "Tile[%04d][%04d]_(#%d)", i, j, tile_id);
 	    t[i][j] = new Tile(tile_name, tile_id);
 
 	    // Tell to the router its coordinates

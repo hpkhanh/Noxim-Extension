@@ -5,8 +5,8 @@
 #
 #
 # X and Y mesh sizes
-mesh_dim_x: 4
-mesh_dim_y: 4
+mesh_dim_x: 100
+mesh_dim_y: 100
 # number of router cycles to process a flit
 router_cycle: 2
 # number of flits for each router buffer
