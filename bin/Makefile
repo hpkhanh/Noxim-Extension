@@ -20,7 +20,7 @@ MODULE := noxim
 
 ##### COMPILER OPTIONS #####
 
-CXX      := g++
+CXX      := g++ -std=c++11
 OPT      := -O3
 DEBUG    := # -g -DDEBUG
 OTHER    := -Wall# -Wno-deprecated

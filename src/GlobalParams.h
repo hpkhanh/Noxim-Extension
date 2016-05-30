@@ -46,6 +46,7 @@ using namespace std;
 #define SEL_RANDOM             0
 #define SEL_BUFFER_LEVEL       1
 #define SEL_NOP                2
+#define SEL_FILE               3
 #define INVALID_SELECTION     -1
 
 // Traffic distribution
@@ -62,10 +63,10 @@ using namespace std;
 #define TRAFFIC_ULOCAL	       "TRAFFIC_ULOCAL"
 
 // Verbosity levels
-#define VERBOSE_OFF            "VERBOSE_OFF"
-#define VERBOSE_LOW            "VERBOSE_LOW"
-#define VERBOSE_MEDIUM         "VERBOSE_MEDIUM"
-#define VERBOSE_HIGH           "VERBOSE_HIGH"
+#define VERBOSE_OFF            0
+#define VERBOSE_LOW            1
+#define VERBOSE_MEDIUM         2
+#define VERBOSE_HIGH           3
 
 
 // Wireless MAC constants
@@ -101,6 +102,8 @@ typedef struct {
 
 typedef map<double, pair <double, double> > LinkBitLinePowerConfig;
 
+typedef map<string, int> VerboseLevel;
+
 typedef struct {
     map<pair<double, double>, pair<double, double> > crossbar_pm;
     map<int, pair<double, double> > network_interface;
@@ -125,7 +128,7 @@ typedef struct {
 } PowerConfig;
 
 struct GlobalParams {
-    static string verbose_mode;
+    static int verbose_mode;
     static bool log_mode;
     static string log_filename;
     static int trace_mode;
@@ -142,6 +145,7 @@ struct GlobalParams {
     static string routing_algorithm;
     static string routing_table_filename;
     static string selection_strategy;
+    static string selection_filename;
     static double packet_injection_rate;
     static double probability_of_retransmission;
     static double locality;
@@ -169,5 +173,10 @@ struct GlobalParams {
     static map<int, int> hub_for_tile;
     static PowerConfig power_configuration;
 };
+
+const VerboseLevel verboseLevel = {{"VERBOSE_OFF", VERBOSE_OFF},
+                                    {"VERBOSE_LOW", VERBOSE_LOW},
+                                    {"VERBOSE_MEDIUM", VERBOSE_MEDIUM},
+                                    {"VERBOSE_HIGH", VERBOSE_HIGH}};
 
 #endif

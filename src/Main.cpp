@@ -53,6 +53,7 @@ int sc_main(int arg_num, char *arg_vet[])
 
     // NoC instance
     n = new NoC("NoC");
+    std::cout << "Created NoC!" << endl;
 
     n->clock(clock);
     n->reset(reset);

@@ -105,6 +105,7 @@ struct Flit {
     int sequence_no;		// The sequence number of the flit inside the packet
     int sequence_length;
     int r_time;
+    vector <int> route;
     Payload payload;	// Optional payload
     double timestamp;		// Unix timestamp at packet generation
     int hop_no;			// Current number of hops from source to destination

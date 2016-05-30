@@ -62,7 +62,7 @@ class GlobalRoutingTable {
 	return valid;
   } private:
 
-     RoutingTableNoC rt_noc;
+    RoutingTableNoC rt_noc;
     bool valid;
 
 };

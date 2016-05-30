@@ -45,6 +45,7 @@ void Router::rxProcess()
 //            if (!buffer[i].IsFull()) {
             Flit received_flit = flit_rx[i].read();
             received_flit.r_time = 0;
+            received_flit.route.push_back(local_id);
 
     //		std::cout << "Router Reiv " << received_flit << endl;
 
@@ -117,17 +118,16 @@ void Router::txProcess()
 
               int o = route(route_data);
 
-              LOG << " checking reservation availability of direction " << o << " for flit " << flit << endl;
+//              LOG << " checking reservation availability of direction " << o << " for flit " << flit << endl;
 
               if (reservation_table.isAvailable(o))
               {
-                  LOG << " reserving from " << i << " to direction " << o << " for flit " << flit << endl;
-    //              printf("From Router %d \n", local_id);
+//                  LOG << " reserving from " << i << " to direction " << o << " for flit " << flit << endl;
                   reservation_table.reserve(i, o);
               }
               else
               {
-                  LOG << " cannot reserve from " << i << " to direction " << o << " for flit " << flit << endl;
+//                  LOG << " cannot reserve from " << i << " to direction " << o << " for flit " << flit << endl;
               }
             }
             }
@@ -151,60 +151,58 @@ void Router::txProcess()
               {
                   if (t_flit.r_time >= GlobalParams::router_cycle)
                   {
-                  //if (GlobalParams::verbose_mode > VERBOSE_OFF)
-                  LOG << "Input[" << i << "] forward to Output[" << o << "], flit: " << flit << endl;
+                      //if (GlobalParams::verbose_mode > VERBOSE_OFF)
+                      LOG << "Input[" << i << "] forward to Output[" << o << "], flit: " << flit << endl;
 
-                  flit_tx[o].write(flit);
-                  if (o == DIRECTION_HUB)
-                  {
-                  power.r2hLink();
-                  LOG << "Forwarding to HUB " << flit << endl;
-                  }
-                  else
-                  {
-                  power.r2rLink();
-                  }
-
-                  power.crossBar();
-
-//                  LOG << "current level tx " << current_level_tx[i] << endl;
-
-                  current_level_tx[o] = 1 - current_level_tx[o];
-                  req_tx[o].write(current_level_tx[o]);
-                  buffer[i].Pop();
-                  buf[i].erase(buf[i].begin());
-
-                  power.bufferRouterPop();
-
-                  // if flit has been consumed
-                  if (flit.dst_id == local_id)
-                      power.networkInterface();
-
-                  if ((flit.flit_type == FLIT_TYPE_TAIL) || (flit.sequence_length == 1))
-                      reservation_table.release(o);
-
-                  // Update stats
-                  if (o == DIRECTION_LOCAL)
-                  {
-                  LOG << "Consumed flit " << flit << endl;
-                  stats.receivedFlit(sc_time_stamp().to_double() / GlobalParams::clock_period_ps, flit);
-                  if (GlobalParams::
-                      max_volume_to_be_drained)
-                  {
-                      if (drained_volume >= GlobalParams:: max_volume_to_be_drained)
-                      sc_stop();
+                      flit_tx[o].write(flit);
+                      if (o == DIRECTION_HUB)
+                      {
+                      power.r2hLink();
+                      LOG << "Forwarding to HUB " << flit << endl;
+                      }
                       else
                       {
-                      drained_volume++;
-                      local_drained++;
+                      power.r2rLink();
                       }
-                  }
-                  }
-                  else if (i != DIRECTION_LOCAL)
-                  {
-                  // Increment routed flits counter
-                  routed_flits++;
-                  }
+
+                      power.crossBar();
+
+                      current_level_tx[o] = 1 - current_level_tx[o];
+                      req_tx[o].write(current_level_tx[o]);
+                      buffer[i].Pop();
+                      buf[i].erase(buf[i].begin());
+
+                      power.bufferRouterPop();
+
+                      // if flit has been consumed
+                      if (flit.dst_id == local_id)
+                          power.networkInterface();
+
+                      if ((flit.flit_type == FLIT_TYPE_TAIL) || (flit.sequence_length == 1))
+                          reservation_table.release(o);
+
+                      // Update stats
+                      if (o == DIRECTION_LOCAL)
+                      {
+                      LOG << "Consumed flit " << flit << endl;
+                      stats.receivedFlit(sc_time_stamp().to_double() / GlobalParams::clock_period_ps, flit);
+                      if (GlobalParams::
+                          max_volume_to_be_drained)
+                      {
+                          if (drained_volume >= GlobalParams:: max_volume_to_be_drained)
+                          sc_stop();
+                          else
+                          {
+                          drained_volume++;
+                          local_drained++;
+                          }
+                      }
+                      }
+                      else if (i != DIRECTION_LOCAL)
+                      {
+                      // Increment routed flits counter
+                      routed_flits++;
+                      }
                   }
               }
               else

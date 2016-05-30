@@ -9,6 +9,7 @@
  */
 
 #include "NoC.h"
+#include "GlobalSelectionTable.h"
 
 void NoC::buildMesh()
 {
@@ -106,18 +107,23 @@ void NoC::buildMesh()
 					data_rate_gbs);
 
     }
-
-    //std::cout << GlobalParams::routing_table_filename << endl;
+    std::cout << "loading routing ..." << endl;
     // Check for routing table availability
     if (GlobalParams::routing_algorithm == ROUTING_TABLE_BASED)
-	assert(grtable.load(GlobalParams::routing_table_filename.c_str()));
-
+        assert(grtable.load(GlobalParams::routing_table_filename.c_str()));
+    std::cout << "load routing done" << endl;
     // Check for traffic table availability
     if (GlobalParams::traffic_distribution == TRAFFIC_TABLE_BASED)
-	assert(gttable.load(GlobalParams::traffic_table_filename.c_str()));
+        assert(gttable.load(GlobalParams::traffic_table_filename.c_str()));
     // Check for traffic trace availability
     else if (GlobalParams::traffic_distribution == TRAFFIC_TRACE_BASED)
-    assert(gtrtable.load(GlobalParams::traffic_trace_filename.c_str()));
+        assert(gtrtable.load(GlobalParams::traffic_trace_filename.c_str()));
+    std::cout << "load traffic trace done" << endl;
+
+    // Check for selection table availability
+    if (GlobalParams::selection_strategy == "FILE")
+        assert(gsltable.load(GlobalParams::selection_filename.c_str()));
+    std::cout << "load selection done" << endl;
 
     // Var to track Hub connected ports
     int * hub_connected_ports = (int *) calloc(GlobalParams::hub_configuration.size(), sizeof(int));
@@ -177,6 +183,8 @@ void NoC::buildMesh()
 	    t[i][j]->pe->local_id = j * GlobalParams::mesh_dim_x + i;
 	    t[i][j]->pe->traffic_table = &gttable;	// Needed to choose destination
 	    t[i][j]->pe->traffic_trace = &gtrtable;
+	    t[i][j]->r->selection_table = &gsltable;
+
 	    if (GlobalParams::traffic_distribution == TRAFFIC_TRACE_BASED)
 	        t[i][j]->pe->never_transmit = (gtrtable.occurrencesAsSource(t[i][j]->pe->local_id) == 0);
 	    else

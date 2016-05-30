@@ -16,6 +16,7 @@
 #include "Buffer.h"
 #include "Stats.h"
 #include "GlobalRoutingTable.h"
+#include "GlobalSelectionTable.h"
 #include "LocalRoutingTable.h"
 #include "ReservationTable.h"
 #include "Utils.h"
@@ -25,6 +26,7 @@
 #include "selectionStrategies/SelectionStrategy.h"
 #include "selectionStrategies/Selection_NOP.h"
 #include "selectionStrategies/Selection_BUFFER_LEVEL.h"
+#include "selectionStrategies/Selection_FILE.h"
 
 using namespace std;
 
@@ -75,6 +77,7 @@ SC_MODULE(Router)
     unsigned long routed_flits;
     RoutingAlgorithm * routingAlgorithm; 
     SelectionStrategy * selectionStrategy; 
+    GlobalSelectionTable * selection_table;
     
     // Functions
 

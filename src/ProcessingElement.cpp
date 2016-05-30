@@ -35,7 +35,12 @@ void ProcessingElement::rxProcess()
 
 	        if (out.is_open() == false)
 	            out.open(GlobalParams::log_filename.c_str(), ios::trunc);
-	        out << "Reiv " << flit_tmp << endl;
+	        out << "Reiv " << flit_tmp << ". Route: ";
+	        for (unsigned int c = 0; c < flit_tmp.route.size(); c++)
+	        {
+	            out << flit_tmp.route[c] << "->";
+	        }
+	        out << endl;
 	    }
 	    current_level_rx = 1 - current_level_rx;	// Negate the old value for Alternating Bit Protocol (ABP)
 	}
@@ -89,6 +94,7 @@ Flit ProcessingElement::nextFlit()
     flit.sequence_length = packet.size;
     flit.r_time = 0;
     flit.hop_no = 0;
+    flit.route.empty();
     //  flit.payload     = DEFAULT_PAYLOAD;
 
     if (packet.size == packet.flit_left)

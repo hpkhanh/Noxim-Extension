@@ -37,7 +37,7 @@ void loadConfiguration() {
     }
 
     // Initialize global configuration parameters (can be overridden with command-line arguments)
-    GlobalParams::verbose_mode = config["verbose_mode"].as<string>();
+    GlobalParams::verbose_mode = verboseLevel.find(config["verbose_mode"].as<string>())->second;
     GlobalParams::log_mode = config["log_mode"].as<bool>();
     GlobalParams::log_filename = config["log_filename"].as<string>();
     GlobalParams::trace_mode = config["trace_mode"].as<bool>();
@@ -54,6 +54,9 @@ void loadConfiguration() {
     GlobalParams::routing_algorithm = config["routing_algorithm"].as<string>();
     GlobalParams::routing_table_filename = config["routing_table_filename"].as<string>(); 
     GlobalParams::selection_strategy = config["selection_strategy"].as<string>();
+//    std::cout << "selection strategy: " << GlobalParams::selection_strategy << endl;
+    GlobalParams::selection_filename = config["selection_filename"].as<string>();
+//    std::cout << "selection filename: " << GlobalParams::selection_filename << endl;
     GlobalParams::packet_injection_rate = config["packet_injection_rate"].as<double>();
     GlobalParams::probability_of_retransmission = config["probability_of_retransmission"].as<double>();
     GlobalParams::traffic_distribution = config["traffic_distribution"].as<string>();
@@ -222,14 +225,15 @@ void showConfig()
     cout << "Using the following configuration: " << endl
          << "- verbose_mode = " << GlobalParams::verbose_mode << endl
          << "- trace_mode = " << GlobalParams::trace_mode << endl
-      // << "- trace_filename = " << GlobalParams::trace_filename << endl
+         << "- trace_filename = " << GlobalParams::trace_filename << endl
          << "- mesh_dim_x = " << GlobalParams::mesh_dim_x << endl
          << "- mesh_dim_y = " << GlobalParams::mesh_dim_y << endl
          << "- buffer_depth = " << GlobalParams::buffer_depth << endl
          << "- max_packet_size = " << GlobalParams::max_packet_size << endl
          << "- routing_algorithm = " << GlobalParams::routing_algorithm << endl
-      // << "- routing_table_filename = " << GlobalParams::routing_table_filename << endl
+         << "- routing_table_filename = " << GlobalParams::routing_table_filename << endl
          << "- selection_strategy = " << GlobalParams::selection_strategy << endl
+         << "- selection_filename = " << GlobalParams::selection_filename << endl
          << "- packet_injection_rate = " << GlobalParams::packet_injection_rate << endl
          << "- probability_of_retransmission = " << GlobalParams::probability_of_retransmission << endl
          << "- traffic_distribution = " << GlobalParams::traffic_distribution << endl
@@ -390,6 +394,8 @@ void parseCmdLine(int arg_num, char *arg_vet[])
 	    } 
 	    else if (!strcmp(arg_vet[i], "-sel")) {
 		GlobalParams::selection_strategy = arg_vet[++i];
+		if (GlobalParams::selection_strategy == "FILE")
+		    GlobalParams::selection_filename == arg_vet[++i];
 	    } 
 	    else if (!strcmp(arg_vet[i], "-pir")) 
 	    {
@@ -538,10 +544,9 @@ void configure(int arg_num, char *arg_vet[]) {
 
     loadConfiguration();
     parseCmdLine(arg_num, arg_vet);
-
     checkConfiguration();
-
     // Show configuration
     if (GlobalParams::verbose_mode > VERBOSE_OFF)
-	showConfig();
+        showConfig();
+    std::cout << "config done" << endl;
 }

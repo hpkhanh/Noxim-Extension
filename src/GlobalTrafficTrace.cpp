@@ -32,42 +32,40 @@ bool GlobalTrafficTrace::load(const char *fname)
       fin.getline(line, sizeof(line) - 1);
 
       if ((line[0] != '\0') || (line[0] != '%')) {
-          if (line[0] != '%') {
-              int time, group_src, group_dst, src, no_dst, no_flit;	// Mandatory
+          int time, group_src, group_dst, src, no_dst, no_flit;	// Mandatory
 
-              int params = sscanf(line, "%d %d %d %d %d %d", &time, &group_src, &group_dst, &src, &no_dst, &no_flit);
-              if (params >= 5)
-              {
-                  // Create a communication from the parameters read on the line
-                  TraceCommunication communication;
+          int params = sscanf(line, "%d %d %d %d %d %d", &time, &group_src, &group_dst, &src, &no_dst, &no_flit);
+          if (params >= 5)
+          {
+              // Create a communication from the parameters read on the line
+              TraceCommunication communication;
 
-                  if (params == 5)
-                      no_flit = 1;
-                  // Mandatory fields
-                  communication.time = GlobalParams::reset_time + GlobalParams::stats_warm_up_time + time;
-                  communication.no_flit = no_flit;
-                  communication.group_src = group_src;
-                  communication.group_dst = group_dst;
-                  communication.src = src;
-                  communication.no_dst = no_dst;
+              if (params == 5)
+                  no_flit = 1;
+              // Mandatory fields
+              communication.time = GlobalParams::reset_time + GlobalParams::stats_warm_up_time + time;
+              communication.no_flit = no_flit;
+              communication.group_src = group_src;
+              communication.group_dst = group_dst;
+              communication.src = src;
+              communication.no_dst = no_dst;
 
+              fin.getline(line, sizeof(line) - 1);
+              while (line[0] == '%')
                   fin.getline(line, sizeof(line) - 1);
-                  while (line[0] == '%')
-                      fin.getline(line, sizeof(line) - 1);
-                  stringstream ss(line);
-                  for (int i = 0; i < no_dst; i++)
-                  {
-                      int dst;
-                      ss >> dst;
+              stringstream ss(line);
+              for (int i = 0; i < no_dst; i++)
+              {
+                  int dst;
+                  ss >> dst;
 //                      printf("%d ", dst);
-                      communication.dsts.push_back(dst);
-                  }
-
-                  // Add this communication to the vector of communications
-                  traffic_trace.push_back(communication);
-                  printf("\n");
+                  communication.dsts.push_back(dst);
               }
-          }
+
+              // Add this communication to the vector of communications
+              traffic_trace.push_back(communication);
+//              printf("\n");
+              }
       }
   }
 

@@ -8,7 +8,7 @@
 mesh_dim_x: 4
 mesh_dim_y: 4
 # number of router cycles to process a flit
-router_cycle: 1
+router_cycle: 2
 # number of flits for each router buffer
 buffer_depth: 8
 # size of flits, in bits
@@ -39,9 +39,11 @@ dyad_threshold: 0.6
 #   RANDOM
 #   BUFFER_LEVEL
 #   NOP
+#   FILE
 # Each of the above labels should match a corresponding
 # implementation in the selectionStrategies source code directory
-selection_strategy: RANDOM
+selection_strategy: "FILE"
+selection_filename: "sel.txt"
 
 #
 # WIRELESS CONFIGURATION

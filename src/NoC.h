@@ -15,6 +15,8 @@
 #include "Tile.h"
 #include "GlobalRoutingTable.h"
 #include "GlobalTrafficTable.h"
+#include "GlobalTrafficTrace.h"
+#include "GlobalSelectionTable.h"
 #include "Hub.h"
 #include "Channel.h"
 #include "TokenRing.h"
@@ -69,12 +71,12 @@ SC_MODULE(NoC)
     GlobalRoutingTable grtable;
     GlobalTrafficTable gttable;
     GlobalTrafficTrace gtrtable;
+    GlobalSelectionTable gsltable;
 
 
     // Constructor
 
     SC_CTOR(NoC) {
-
 
 	// Build the Mesh
 	buildMesh();
