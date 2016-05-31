@@ -548,5 +548,4 @@ void configure(int arg_num, char *arg_vet[]) {
     // Show configuration
     if (GlobalParams::verbose_mode > VERBOSE_OFF)
         showConfig();
-    std::cout << "config done" << endl;
 }

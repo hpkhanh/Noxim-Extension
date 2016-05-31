@@ -94,7 +94,7 @@ bool GlobalRoutingTable::load(const char *fname)
 
     bool stop = false;
     while (!fin.eof() && !stop) {
-	char line[1024];
+	char line[512];
 	fin.getline(line, sizeof(line) - 1);
 
 	if (line[0] == '\0')
@@ -108,16 +108,18 @@ bool GlobalRoutingTable::load(const char *fname)
 
 //		    printf("%d %d %d %d \n", node_id, in_src, in_dst, dst_id);
 
-		    char *pstr = line + COLUMN_AOC;
-/*
-		    int n = 0;
-		    while (pstr[n] != '\0')
-		    {
-		        printf("%c ", pstr[n]);
-		        n++;
-		    }
-		    printf("\n");
-*/
+//		    char *pstr = line + COLUMN_AOC;
+		    char *pstr = line;
+		    pstr = strstr(pstr, ":");
+		    pstr++;
+
+//		    int n = 0;
+//		    while (pstr[n] != '\0')
+//		    {
+//		        printf("%c ", pstr[n]);
+//		        n++;
+//		    }
+//		    printf("\n");
 //		    std::cout << (sscanf(pstr, "%d->%d", &out_src, &out_dst) == 2) << endl;
 		    while (sscanf(pstr, "%d->%d", &out_src, &out_dst) == 2) {
 //		    printf("route out: %d -> %d \n", out_src, out_dst);

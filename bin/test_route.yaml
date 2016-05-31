@@ -28,7 +28,7 @@ r2r_link_length: 1.0
 #   TABLE_BASED
 # Each of the above labels should match a corresponding
 # implementation in the routingAlgorithms source code directory
-routing_algorithm: XY
+routing_algorithm: TABLE_BASED
 routing_table_filename: "rout.txt"
 
 # Routing specific parameters
@@ -42,7 +42,7 @@ dyad_threshold: 0.6
 #   FILE
 # Each of the above labels should match a corresponding
 # implementation in the selectionStrategies source code directory
-selection_strategy: "RANDOM"
+selection_strategy: "FILE"
 selection_filename: "sel.txt"
 
 #
@@ -167,7 +167,7 @@ probability_of_retransmission: 0.01
 #   TRAFFIC_BIT_REVERSAL
 #   TRAFFIC_SHUFFLE
 #   TRAFFIC_BUTTERFLY
-traffic_distribution: TRAFFIC_RANDOM
+traffic_distribution: TRAFFIC_TRACE_BASED
 # when traffic table based is specified, use the following
 # configuration file
 traffic_table_filename: "t.txt"

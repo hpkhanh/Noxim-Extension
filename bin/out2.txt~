@@ -5,9 +5,30 @@
 Loading configuration from file "test_route.yaml"... Done
 Loading power configurations from file "power.yaml"... Done
 config done
-Loading routing table...Done
-Loading traffic trace...Done
-Loading selection table...Done
+loading routing ...
+  1 - > 5 ,   1 - > 2 , 
+1
+route out: 1 -> 5 
+route out: 1 -> 2 
+  2 - > 6 , 
+1
+route out: 2 -> 6 
+  4 - > 5 ,   4 - > 8 , 
+1
+route out: 4 -> 5 
+route out: 4 -> 8 
+  5 - > 6 , 
+1
+route out: 5 -> 6 
+  5 - > 9 , 
+1
+route out: 5 -> 9 
+  8 - > 9 , 
+1
+route out: 8 -> 9 
+load routing done
+load traffic trace done
+load selection done
 Created NoC!
 Reset for 1000 cycles... 
 

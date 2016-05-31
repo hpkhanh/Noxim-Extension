@@ -53,7 +53,7 @@ bool GlobalSelectionTable::load(const char * fname)
                 // Add this sl_port to the vector of sl_ports
                 sl_table.push_back(sl_port);
             }
-            printf("Sel: %d %d %d %d %d %d \n", node_id, in_src, dst_id, out_dst, time_on, time_off);
+//            printf("Sel: %d %d %d %d %d %d \n", node_id, in_src, dst_id, out_dst, time_on, time_off);
         }
     }
 
